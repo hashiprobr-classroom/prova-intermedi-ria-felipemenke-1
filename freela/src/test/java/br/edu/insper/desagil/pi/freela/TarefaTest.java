@@ -3,8 +3,7 @@ package br.edu.insper.desagil.pi.freela;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TarefaTest {
     private Tarefa t;
@@ -18,8 +17,8 @@ public class TarefaTest {
     public void constroi() {
         assertEquals(1,t.getId());
         assertEquals("",t.getDescricao());
-        assertEquals(null,t.getInicio());
-        assertEquals(null,t.getFim());
+        assertNull(t.getInicio());
+        assertNull(t.getFim());
     }
 
     @Test
@@ -55,7 +54,7 @@ public class TarefaTest {
 
         Data m2 = new Data();
         m2.atualiza(1971,1,1);
-        
+
         Exception exception = assertThrows(IllegalArgumentException.class,()->{t.atualiza(m2,m1);});
         assertEquals("Data Impossível!",exception.getMessage());
     }
