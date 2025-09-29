@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TarefaTest {
     private Tarefa t;
@@ -34,6 +35,7 @@ public class TarefaTest {
 
         Data m2 = new Data();
         m2.atualiza(1971,1,1);
+
         t.atualiza(m1,m2);
 
         assertEquals(1970,m1.getAno());
@@ -53,14 +55,8 @@ public class TarefaTest {
 
         Data m2 = new Data();
         m2.atualiza(1971,1,1);
-        t.atualiza(m2,m1);
-
-        assertEquals(1970,m1.getAno());
-        assertEquals(1,m1.getMes());
-        assertEquals(1,m1.getDia());
-
-        assertEquals(1971,m2.getAno());
-        assertEquals(1,m2.getMes());
-        assertEquals(1,m2.getDia());
+        
+        Exception exception = assertThrows(IllegalArgumentException.class,()->{t.atualiza(m2,m1);});
+        assertEquals("Data Impossível!",exception.getMessage());
     }
 }

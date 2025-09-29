@@ -3,8 +3,8 @@ package br.edu.insper.desagil.pi.freela;
 public class Tarefa {
     private int id;
     private String descricao;
-    private Momento inicio;
-    private Momento fim;
+    private Data inicio;
+    private Data fim;
 
     public Tarefa(int id) {
         this.id = id;
@@ -33,7 +33,7 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public void atualiza(Momento m1, Momento m2) {
+    public void atualiza(Data m1, Data m2) {
         if (m1.minutos() < m2.minutos()) {
             this.inicio = m1;
             this.fim = m2;
