@@ -3,9 +3,9 @@ package br.edu.insper.desagil.pi.freela;
 public class DataHorario extends Momento{
     private int hora;
     private int minuto;
-    private int data;
+    private Data data;
 
-    public DataHorario(int data) {
+    public DataHorario(Data data) {
         this.hora = 0;
         this.minuto = 0;
         this.data = data;
@@ -18,30 +18,37 @@ public class DataHorario extends Momento{
         return minuto;
     }
 
-    public int getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(Data data) {
         this.data = data;
     }
 
     public void atualiza(int novaHora, int novoMinuto) {
-        if (0 < novaHora && novaHora < 23) {
+        if (0 >= novaHora && novaHora <= 23) {
             this.hora = novaHora;
         }
-        else if (0 > novaHora || novaHora > 23) {
+        else if (0 < novaHora || novaHora > 23) {
             this.hora = ajusta(novaHora,0,23);
         }
 
-        if (0 < novoMinuto && novoMinuto < 59) {
+        if (0 >= novoMinuto && novoMinuto <= 59) {
             this.minuto = novoMinuto;
         }
-        else if (0 > novoMinuto || novoMinuto > 59) {
+        else if (0 < novoMinuto || novoMinuto > 59) {
             this.minuto = ajusta(novoMinuto,0,59);
         }
     }
 
-   // @Override
-  //  public int minutos() {}
+    @Override
+    public int minutos() {
+        int minutosPassados = data.minutos();
+        minutosPassados += (hora*60) + minuto;
+
+        return minutosPassados;
+    }
+
+
 }

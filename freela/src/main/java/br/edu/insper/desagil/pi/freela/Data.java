@@ -7,7 +7,7 @@ public class Data extends Momento {
     private int ano;
     private int mes;
     private int dia;
-    private Map<Integer, Integer> limite = new HashMap<>();
+    private Map<Integer, Integer> limite;
 
     public Data() {
         this.ano = 1970;
@@ -42,13 +42,13 @@ public class Data extends Momento {
     }
 
     public void atualiza(int novoAno, int novoMes, int novoDia) {
-        if (novoAno > 1970 && novoAno < 2070) {
+        if (novoAno >= 1970 && novoAno <= 2070) {
             this.ano = novoAno;
         }
         else if (novoAno < 1970 || novoAno > 2070) {
             this.ano = ajusta(novoAno,1970,2070);
         }
-        if (novoMes > 1 && novoMes < 12) {
+        if (novoMes >= 1 && novoMes <= 12) {
             this.mes = novoMes;
         }
         else if (novoMes < 1 || novoMes > 12) {
@@ -56,11 +56,11 @@ public class Data extends Momento {
         }
 
         int dialimite = limite.get(novoMes);
-        
-        if (novoDia > 1 && novoDia < dialimite) {
+
+        if (novoDia >= 1 && novoDia <= dialimite) {
             this.dia = novoDia;
         }
-        else {
+        else if (novoDia < 1 || novoDia > dialimite) {
             this.dia = ajusta(novoDia,1,dialimite);
         }
     }
@@ -71,11 +71,11 @@ public class Data extends Momento {
         int soma;
         diasPassados += (ano-1970)*365;
 
-        for (int i = 0; i < mes; i++) {
-            diasPassados+= limite.get(i);
+        for (int i = 1; i < mes; i++) {
+            diasPassados += limite.get(i);
         }
 
-        diasPassados+= dia;
+        diasPassados+= dia-1;
 
         soma = diasPassados * 24 * 60;
 
