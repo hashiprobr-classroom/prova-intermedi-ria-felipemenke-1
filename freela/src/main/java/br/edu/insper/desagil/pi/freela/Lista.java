@@ -10,6 +10,10 @@ public class Lista {
         this.tarefas = new ArrayList<>();
     }
 
+    public List<Tarefa> getTarefas() {
+        return tarefas;
+    }
+
     public void adiciona(Tarefa tarefa) {
         int diferentes = 0;
         for (Tarefa t : tarefas) {

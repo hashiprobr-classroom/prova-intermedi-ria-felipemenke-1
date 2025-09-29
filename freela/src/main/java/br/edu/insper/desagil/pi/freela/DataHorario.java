@@ -27,17 +27,17 @@ public class DataHorario extends Momento{
     }
 
     public void atualiza(int novaHora, int novoMinuto) {
-        if (0 >= novaHora && novaHora <= 23) {
+        if (novaHora >= 0 && novaHora <= 23) {
             this.hora = novaHora;
         }
-        else if (0 < novaHora || novaHora > 23) {
+        else if (novaHora < 0 || novaHora > 23) {
             this.hora = ajusta(novaHora,0,23);
         }
 
-        if (0 >= novoMinuto && novoMinuto <= 59) {
+        if (novoMinuto >= 0 && novoMinuto <= 59) {
             this.minuto = novoMinuto;
         }
-        else if (0 < novoMinuto || novoMinuto > 59) {
+        else if (novoMinuto < 0 || novoMinuto > 59) {
             this.minuto = ajusta(novoMinuto,0,59);
         }
     }

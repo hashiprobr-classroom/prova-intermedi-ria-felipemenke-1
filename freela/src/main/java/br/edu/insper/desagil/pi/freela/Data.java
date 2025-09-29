@@ -55,13 +55,11 @@ public class Data extends Momento {
             this.mes = ajusta(novoMes,1,12);
         }
 
-        int dialimite = limite.get(novoMes);
-
-        if (novoDia >= 1 && novoDia <= dialimite) {
+        if (novoDia >= 1 && novoDia <= limite.get(novoMes)) {
             this.dia = novoDia;
         }
-        else if (novoDia < 1 || novoDia > dialimite) {
-            this.dia = ajusta(novoDia,1,dialimite);
+        else if (novoDia < 1 || novoDia > limite.get(novoMes)) {
+            this.dia = ajusta(novoDia,1,limite.get(novoMes));
         }
     }
 
