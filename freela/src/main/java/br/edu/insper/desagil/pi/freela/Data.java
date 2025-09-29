@@ -13,7 +13,7 @@ public class Data extends Momento {
         this.ano = 1970;
         this.mes = 1;
         this.dia = 1;
-        Map<Integer, Integer> limite = new HashMap<>();
+        this.limite = new HashMap<>();
         limite.put(1, 31);
         limite.put(2, 28);
         limite.put(3, 31);
@@ -26,7 +26,6 @@ public class Data extends Momento {
         limite.put(10, 31);
         limite.put(11, 30);
         limite.put(12, 31);
-        this.limite = limite;
     }
 
     public int getAno() {
@@ -48,6 +47,7 @@ public class Data extends Momento {
         else if (novoAno < 1970 || novoAno > 2070) {
             this.ano = ajusta(novoAno,1970,2070);
         }
+
         if (novoMes >= 1 && novoMes <= 12) {
             this.mes = novoMes;
         }
@@ -55,11 +55,11 @@ public class Data extends Momento {
             this.mes = ajusta(novoMes,1,12);
         }
 
-        if (novoDia >= 1 && novoDia <= limite.get(novoMes)) {
+        if (novoDia >= 1 && novoDia <= limite.get(mes)) {
             this.dia = novoDia;
         }
-        else if (novoDia < 1 || novoDia > limite.get(novoMes)) {
-            this.dia = ajusta(novoDia,1,limite.get(novoMes));
+        else if (novoDia < 1 || novoDia > limite.get(mes)) {
+            this.dia = ajusta(novoDia,1,limite.get(mes));
         }
     }
 
